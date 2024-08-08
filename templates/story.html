@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<p>{{ story|safe }}</p>
+<a href="{{ url_for('stories') }}">Back to My Stories</a>
+{% endblock %}

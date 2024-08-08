@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Stories</h1>
+<button class="success" onclick="location.href=`{{ url_for('create_story') }}`">
+    Create New Story
+</button>
+
+{% if stories %}
+    {% for story in stories %}
+        <details id="story-{{ story.id }}">
+            <summary>{{ story.title }}</summary>
+            {{ story.story | safe }}
+            <button class="danger" onclick="deleteStory({{ story.id }})">
+                X
+            </button>
+        </details>
+    {% endfor %}
+{% else %}
+    <p>No stories available. <b>Create a story</b> to view it here.</p>
+{% endif %}
+<hr />
+
+<script>
+    function deleteStory(storyId) {
+        fetch(`/delete_story/${storyId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => {
+            if (response.status === 204) {
+                document.getElementById(`story-${storyId}`).remove();
+            } else {
+                alert('Failed to delete story');
+            }
+        });
+    }
+</script>
+
+{% endblock %}

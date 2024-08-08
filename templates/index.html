@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h-group>
+        <h1>📚 Welcome to the AI Story Creator for Children! 🎉</h1>
+        <p>Let your imagination run wild and create amazing stories with our fun and engaging tool! ✨</p>
+    </h-group>
+
+    <section>
+        <h2>✨ Features ✨</h2>
+        <ul>
+            <li>🌟 Create personalized stories with your favorite characters</li>
+            <li>🚀 Embark on exciting adventures in magical places</li>
+            <li>💬 Interactive dialogues and fun emojis</li>
+            <li>📚 Educational and positive messages</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>📝 How It Works</h2>
+        <p>Follow these simple steps to create your story:</p>
+        <ol>
+            <li>Enter the names, ages, and occupations of your characters.</li>
+            <li>Choose an exciting theme and place for your adventure.</li>
+            <li>Click on the "Create Story" button and let the magic happen!</li>
+        </ol>
+    </section>
+
+    {% if not current_user.is_authenticated %}
+        <section>
+            <h2>🎨 Start Your Adventure</h2>
+            <p>Ready to create your own story? <a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started!</p>
+        </section>
+    {% else %}
+        <section>
+            <h2>📖 Explore Stories</h2>
+            <p>Already have an account? <a href="/stories">View your stories</a> and keep the adventure going!</p>
+        </section>
+    {% endif %}
+
+    <footer>
+        <p>© 2024 AI Story Creator for Children. All rights reserved. 🎈</p>
+    </footer>
+{% endblock %}

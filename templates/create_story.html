@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create a New Story</h1>
+
+<div class="container">
+    <form method="POST" action="{{ url_for('create_story') }}">
+        <label for="title">Title:
+            <input id="title" name="title" />
+        </label>
+        <label for="theme">
+            Select a theme:
+            <select id="theme" name="theme">
+              <optgroup label="Fantasy">
+                <option>Magic School</option>
+                <option>Dragon's Lair</option>
+                <option>Fairy Kingdom</option>
+                <option>Talking Animals</option>
+              </optgroup>
+              <optgroup label="Adventure">
+                <option>Treasure Island</option>
+                <option>Secret Treehouse</option>
+                <option>Hidden Cave</option>
+                <option>Deserted Castle</option>
+              </optgroup>
+            </select>
+        </label>        
+        <label for="place">Place:
+            <input id="place" name="place" />
+        </label>
+        <label for="prompt">Prompt:
+            <textarea id="prompt" name="prompt" placeholder="Enter details about your characters and scene" required></textarea>
+        </label>
+        <button type="submit">Generate Story</button>
+    </form>
+</div>
+<a href="{{ url_for('stories') }}">Back to My Stories</a>
+{% endblock %}
