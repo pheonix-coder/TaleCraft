@@ -7,8 +7,9 @@
 </button>
 
 {% if stories %}
+    <input type="text" id="searchBar" class="my-2" placeholder="Search stories by title..." onkeyup="filterStories()">
     {% for story in stories %}
-        <details id="story-{{ story.id }}">
+        <details id="story-{{ story.id }}" class="story">
             <summary>{{ story.title }}</summary>
             {{ story.story | safe }}
             <button class="danger" onclick="deleteStory({{ story.id }})">
@@ -16,6 +17,9 @@
             </button>
         </details>
     {% endfor %}
+    <p id="noStories" style="display: none;">
+        No such story available. You can <a href="{{ url_for('create_story') }}">create a story</a>.
+    </p>
 {% else %}
     <p>No stories available. <b>Create a story</b> to view it here.</p>
 {% endif %}
@@ -35,6 +39,39 @@
                 alert('Failed to delete story');
             }
         });
+    }
+
+    function filterStories() {
+        var input = document.getElementById('searchBar');
+        var filter = input.value.toLowerCase();
+        var stories = document.getElementsByClassName('story');
+        var anyVisible = false;
+
+        for (var i = 0; i < stories.length; i++) {
+            var title = stories[i].getElementsByTagName('summary')[0].textContent || stories[i].getElementsByTagName('summary')[0].innerText;
+            if (title.toLowerCase().indexOf(filter) > -1) {
+                stories[i].style.display = "";
+                anyVisible = true;
+            } else {
+                stories[i].style.display = "none";
+            }
+        }
+
+        document.getElementById('noStories').style.display = anyVisible ? 'none' : '';
+    }
+
+    function checkVisibleStories() {
+        var stories = document.getElementsByClassName('story');
+        var anyVisible = false;
+
+        for (var i = 0; i < stories.length; i++) {
+            if (stories[i].style.display !== 'none') {
+                anyVisible = true;
+                break;
+            }
+        }
+
+        document.getElementById('noStories').style.display = anyVisible ? 'none' : '';
     }
 </script>
 
