@@ -49,7 +49,11 @@
    flask db upgrade
    ```
 
-5. **Run the application:**
+5. **Set Up API key:**
+
+   - Obtain a Groq API key and add it to your .env file (see .env.example for reference).
+
+6. **Run the application:**
 
    ```bash
    python run.py
@@ -61,4 +65,8 @@ This project is a submission to [Quira Quest 16](https://quira.sh/quests/creator
 
 ## 🎥 Demo Video
 
-Demo video coming soon!
+<p align="center">
+    <a href="https://youtu.be/JqApojcWpRo?si=NWefZeyNvM8qa2Dv">
+        <img src="https://img.freepik.com/free-vector/modern-red-video-media-player-template_1017-23409.jpg"/>
+    </a>
+</p>
